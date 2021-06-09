@@ -3,14 +3,17 @@ import 'package:flutter/services.dart';
 class Scandevice {
   Scandevice();
   Future init() async {
-    _eventChannel
-        .receiveBroadcastStream()
-        .forEach((v) => listeners.forEach((listener) => listener(v)));
-
+    try {
+      _eventChannel
+          .receiveBroadcastStream()
+          .forEach((v) => listeners.forEach((listener) => listener(v)));
+    } catch (e) {
+      print('SCANDEVICE CONNECTION ERROR: $e');
+    }
     open();
 
-    _beep = await invk("beep");
-    _vibrate = await invk("vibrate");
+    _beep = await invk<bool>("beep");
+    _vibrate = await invk<bool>("vibrate");
   }
 
   bool _beep;
@@ -33,7 +36,15 @@ class Scandevice {
   static const _methodChannel = const MethodChannel('scandevice.methods');
 
   // Выполнить удалённый метод сканнера
-  Future<T> invk<T>(String method) => _methodChannel.invokeMethod<T>(method);
+  Future<T> invk<T>(String method) {
+    try {
+      return _methodChannel.invokeMethod<T>(method);
+    } catch (e) {
+      print('SCANDEVICE INVOKE ERROR: $e');
+      return null;
+    }
+  }
+
   final listeners = <Listener>[];
 }
 
