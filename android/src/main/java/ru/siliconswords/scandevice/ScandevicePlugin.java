@@ -1,7 +1,5 @@
 package ru.siliconswords.scandevice;
 
-import androidx.annotation.NonNull;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -9,13 +7,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.device.ScanDevice;
 
+import androidx.annotation.NonNull;
+
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /**
  * ScandevicePlugin
@@ -67,11 +66,17 @@ public class ScandevicePlugin implements FlutterPlugin, MethodCallHandler {
             case "scan":
                 sm.startScan();
                 break;
-            case "continueScanning":
+            case "setBroadcastOutScanMode":
+                sm.setOutScanMode(0);
+                break;
+            case "setEditboxOutScanMode":
                 sm.setOutScanMode(1);
                 break;
-            case "onceScanning":
-                sm.setOutScanMode(0);
+            case "setKeyboardOutScanMode":
+                sm.setOutScanMode(2);
+                break;
+            case "setSingleOutScanMode":
+                sm.setOutScanMode(3);
                 break;
             case "beep":
                 result.success(sm.getScanBeepState());

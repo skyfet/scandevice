@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Scandevice Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -34,7 +34,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _scannedCode = 'No scan.';
-  // bool _continue = false;
 
   @override
   void initState() {
@@ -78,21 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Text("Continue after scan?"),
-              //     Switch(
-              //       value: _continue,
-              //       onChanged: (s) => setState(() {
-              //         s ? scanner.setContinueScanning() : scanner.setOnceScanning();
-              //         print('beep: $s');
-              //         _continue = s;
-              //       }),
-              //     ),
-              //   ],
-              // ),
-              // ElevatedButton(child: Text('Reset'), onPressed: () => scanner.reset()),
               Text(_scannedCode),
             ],
           ),

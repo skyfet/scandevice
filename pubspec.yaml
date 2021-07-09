@@ -1,6 +1,6 @@
 name: scandevice
 description: Flutter plugin for ScanDevice SDK.
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/skyfet/scandevice
 
 environment:

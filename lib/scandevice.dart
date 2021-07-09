@@ -14,6 +14,7 @@ class Scandevice {
     }
 
     open();
+    setBroadcastOutputMode();
 
     _beep = await invk<bool>('beep') ?? false;
     _vibrate = await invk<bool>('vibrate') ?? false;
@@ -31,8 +32,7 @@ class Scandevice {
 
   void open() => invk('open');
   void scan() => invk('scan');
-  void setContinueScanning() => invk('continueScanning');
-  void setOnceScanning() => invk('onceScanning');
+  void setBroadcastOutputMode() => invk('setBroadcastOutScanMode');
   void close() => invk('close');
   void reset() => invk('reset');
 
